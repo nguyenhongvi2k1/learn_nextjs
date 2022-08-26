@@ -5,6 +5,7 @@ import EventSummary from "../../componets/event-detail/event-summary";
 import EventLogistics from "../../componets/event-detail/event-logistics";
 import EventContent from "../../componets/event-detail/event-content";
 import ErrorAlert from "../../componets/error-alert/error-alert";
+import Head from "next/head";
 function EventDetails() {
   const router = useRouter();
 
@@ -17,7 +18,11 @@ function EventDetails() {
   }
 
   return (
-    <Fragment>
+    <>
+        <Head>
+            <title>Detail Event</title>
+            <meta name="description" content={''}/>
+        </Head>
       <EventSummary title={event.title} />
       <EventLogistics
         date={event.date}
@@ -28,7 +33,7 @@ function EventDetails() {
       <EventContent>
         <p> {event.description}</p>
       </EventContent>
-    </Fragment>
+    </>
   );
 }
 export default EventDetails;
