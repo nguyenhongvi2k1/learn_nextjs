@@ -7,6 +7,7 @@ import Head from "next/head";
 function AllEventsPage(props) {
     const router = useRouter();
     const { events } = props;
+    // console.log(props)
 
 
     function findEventsHandler(year, month){
@@ -20,7 +21,7 @@ function AllEventsPage(props) {
                 <meta name= "description" content='Find a lot of great events that allow you to evolve...' />
             </Head>
             <EventSearch onSearch = {findEventsHandler}/>
-           <EventList items={events} />
+           <EventList items={events[0]} />
         </>
     )
 }

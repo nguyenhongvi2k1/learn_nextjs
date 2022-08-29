@@ -11,6 +11,9 @@ function MainHeader(){
                 <li>
                     <Link href='/events'>Browse All Events</Link>
                 </li>
+                <li>
+                    <Link href='/form'>From Events</Link>
+                </li>
             </ul>
         </nav>
     </header>

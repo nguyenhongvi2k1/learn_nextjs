@@ -6,6 +6,10 @@ import EventLogistics from "../../componets/event-detail/event-logistics";
 import EventContent from "../../componets/event-detail/event-content";
 import ErrorAlert from "../../componets/error-alert/error-alert";
 import Head from "next/head";
+import {fetchAPI} from "../../lib/api";
+import {getStrapiMedia} from "../../lib/media";
+
+
 function EventDetails(props) {
   // const router = useRouter();
   //
@@ -24,6 +28,7 @@ function EventDetails(props) {
             </div>
         );
     }
+    const imageUrl = getStrapiMedia(props.attributes.image)
   return (
     <>
         <Head>
@@ -47,8 +52,8 @@ function EventDetails(props) {
 export async function getStaticProps(context) {
     const eventId = context.params.eventId;
 
-    const event = await getEventById(eventId);
-
+    // const event = await getEventById(eventId);
+    const event = await fetchAPI("/restaurants1")
     return {
         props: {
             selectedEvent: event
@@ -58,9 +63,9 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths(){
-    const events = await getFeaturedEvents();
-
-    const paths = events.map((event) => ({
+    // const events = await getFeaturedEvents();
+    const events = await fetchAPI("/restaurants1", { fields: ["eventId"] })
+    const paths = events.data.map((event) => ({
         params: {eventId: event.id}
     }))
     return{

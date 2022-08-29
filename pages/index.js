@@ -1,10 +1,11 @@
 import EventList from "../componets/events/event-list";
-import {getFeaturedEvents} from '../helpers/api-util.js'
+// import {getFeaturedEvents} from '../helpers/api-util.js'
+import {fetchAPI} from "../lib/api";
 import Head from "next/head";
-import {getFilteredEvents} from "../dummy_data";
 
 function HomePage(props) {
-  const featuredEvents = getFeaturedEvents();
+  // const featuredEvents = getFeaturedEvents();
+  // console.log(props)
   return (
     <>
         <Head>
@@ -17,12 +18,22 @@ function HomePage(props) {
 }
 
 export async function getStaticProps(){
-    const featuresEvents = await getFeaturedEvents()
+
+    const [events] = await Promise.all([
+        fetchAPI("/restaurants1", {
+            data: {
+                id: "*",
+                attributes: "*",
+            }
+        })
+    ])
+    // const featuresEvents = await getFeaturedEvents()
     return {
         props: {
-            events: featuresEvents
+            events: events.data,
+            // form: forms.data
         },
-        revalidate: 600
+        revalidate: 1
     }
 }
 export default HomePage;

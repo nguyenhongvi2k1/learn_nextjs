@@ -8,6 +8,7 @@ function Layout(props){
 
         </header> */}
         <MainHeader/>
+
         <main>
             {props.children}
         </main>

@@ -1,6 +1,6 @@
 
 export async function getAllEvents(){
-    const response = await fetch('https://nextjs-d3e05-default-rtdb.firebaseio.com/events.json');
+    const response = await fetch('http://localhost:1337/api/restaurants1/');
     const data = await response.json();
 
     const events =[];

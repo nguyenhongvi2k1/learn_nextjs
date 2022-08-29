@@ -15,7 +15,7 @@ function filteredEventsPage(props) {
     const filterData = router.query.slug;
 
     const { data, error } = useSWR(
-        'https://nextjs-d3e05-default-rtdb.firebaseio.com/events.json'
+        'http://localhost:1337/api/restaurants1'
     );
 
     useEffect(() => {
