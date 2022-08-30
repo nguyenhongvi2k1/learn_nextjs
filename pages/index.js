@@ -5,7 +5,7 @@ import Head from "next/head";
 
 function HomePage(props) {
   // const featuredEvents = getFeaturedEvents();
-  // console.log(props)
+  console.log("props:", props)
   return (
     <>
         <Head>
@@ -20,13 +20,14 @@ function HomePage(props) {
 export async function getStaticProps(){
 
     const [events] = await Promise.all([
-        fetchAPI("/restaurants1", {
+        fetchAPI("/restaurant", {
             data: {
                 id: "*",
                 attributes: "*",
             }
         })
     ])
+    console.log(events)
     // const featuresEvents = await getFeaturedEvents()
     return {
         props: {

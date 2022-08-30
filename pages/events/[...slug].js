@@ -7,6 +7,7 @@ import ResultsTitle from "../../componets/results-title/results-title";
 import Button from "../../componets/ui/button";
 import ErrorAlert from "../../componets/error-alert/error-alert";
 import Head from "next/head";
+import {fetchAPI, getStrapiURL} from "../../lib/api";
 
 function filteredEventsPage(props) {
     const [loadedEvents, setLoadedEvents] = useState();
@@ -14,9 +15,7 @@ function filteredEventsPage(props) {
 
     const filterData = router.query.slug;
 
-    const { data, error } = useSWR(
-        'http://localhost:1337/api/restaurants1'
-    );
+    const { data, error } = getStrapiURL('/restaurant')
 
     useEffect(() => {
         if (data) {

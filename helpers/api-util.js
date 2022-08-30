@@ -1,6 +1,6 @@
 
 export async function getAllEvents(){
-    const response = await fetch('http://localhost:1337/api/restaurants1/');
+    const response = await fetch('http://localhost:1337/api/restaurant/');
     const data = await response.json();
 
     const events =[];

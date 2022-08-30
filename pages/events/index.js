@@ -7,9 +7,10 @@ import Head from "next/head";
 function AllEventsPage(props) {
     const router = useRouter();
     const { events } = props;
-    // console.log(props)
 
+    const arrayEvents = Object.entries(events)
 
+    console.log("events:", arrayEvents)
     function findEventsHandler(year, month){
         const fullPath = `/events/${year}/${month}`;
         router.push(fullPath);
@@ -21,7 +22,8 @@ function AllEventsPage(props) {
                 <meta name= "description" content='Find a lot of great events that allow you to evolve...' />
             </Head>
             <EventSearch onSearch = {findEventsHandler}/>
-           <EventList items={events[0]} />
+
+           <EventList items={arrayEvents} />
         </>
     )
 }
@@ -31,9 +33,9 @@ export async function getStaticProps(){
 
     return{
         props:{
-            events:events
+            events:events[0]
         },
-        revalidate: 60
+        revalidate: 1
     }
 }
 

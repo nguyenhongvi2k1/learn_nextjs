@@ -29,6 +29,7 @@ function EventDetails(props) {
         );
     }
     const imageUrl = getStrapiMedia(props.attributes.image)
+    console.log(imageUrl)
   return (
     <>
         <Head>
@@ -39,7 +40,7 @@ function EventDetails(props) {
       <EventLogistics
         date={event.date}
         address={event.location}
-        image={event.image}
+        image={imageUrl}
         imageAlt={event.title}
       />
       <EventContent>
@@ -53,7 +54,7 @@ export async function getStaticProps(context) {
     const eventId = context.params.eventId;
 
     // const event = await getEventById(eventId);
-    const event = await fetchAPI("/restaurants1")
+    const event = await fetchAPI("/restaurant")
     return {
         props: {
             selectedEvent: event
@@ -64,7 +65,7 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths(){
     // const events = await getFeaturedEvents();
-    const events = await fetchAPI("/restaurants1", { fields: ["eventId"] })
+    const events = await fetchAPI("/restaurant", { fields: ["eventId"] })
     const paths = events.data.map((event) => ({
         params: {eventId: event.id}
     }))
